@@ -22,7 +22,6 @@ appstat.to_sql(name='App_Stat', con=engine, if_exists='append', index=False)
 rentavg.to_sql(name='Rent_Avg', con=engine, if_exists='append', index=False)
 allrent.to_sql(name='All_Rent', con=engine, if_exists='append', index=False)
 
-
 # Reading data from PostGres
 appstat = pd.read_sql_query('select * from "App_Stat"', con=engine).to_dict()
 rentavg = pd.read_sql_query('select * from "Rent_Avg"', con=engine).to_dict()
