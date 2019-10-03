@@ -1,8 +1,7 @@
 # Importing required modules
 import pandas as pd
 from sqlalchemy import inspect, create_engine
-
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 # Location of Csv files
 appstat_loc = "Data/Final Data/final_table_all_values.csv" 
@@ -32,6 +31,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    return render_template("index.html")
+
+@app.route("/apps")
+def apps():
     return "<a href=http://127.0.0.1:5000/appstat>App Staticstics</a><br>\
     <a href=http://127.0.0.1:5000/rentavg>Rent Average</a><br>\
     <a href=http://127.0.0.1:5000/allrent>All Rent</a><br>"
