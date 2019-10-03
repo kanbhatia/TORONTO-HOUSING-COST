@@ -3,10 +3,14 @@ Panel_title = "Toronto map"
 d3.select(".panel-title").text(Panel_title);
 console.log(Panel_title);
 
-function asd (stats){
-    xa = stats;
-    console.log(xa);
+function getJsonData (data){
+    return data;
 }
 
-url = "http://localhost:5000/appstat"
-d3.json(url).then(asd)
+// links
+var appstat = d3.json("http://localhost:5000/appstat").then(getJsonData);
+var rentavg = d3.json("http://localhost:5000/rentavg").then(getJsonData);
+var allrent = d3.json("http://localhost:5000/allrent").then(getJsonData);
+
+
+
