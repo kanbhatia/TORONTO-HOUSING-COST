@@ -30,8 +30,10 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 // Getting Geojson data
 link_GeoJson = "./static/Data/Neighbourhoods.geojson" 
 
-function chooseColor(color){
-  //
+function chooseColor(neighborhood){
+  name = neighborhood.properties.AREA_NAME;
+  
+  return "yellow"
 }
 
 d3.json(link_GeoJson).then(data => {
@@ -43,7 +45,7 @@ d3.json(link_GeoJson).then(data => {
       return {
         color: "white",
         // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
-        fillColor: "yellow",//,chooseColor(neighborhood)
+        fillColor: chooseColor(neighborhood),
         fillOpacity: 0.5,
         weight: 1.5
       };
