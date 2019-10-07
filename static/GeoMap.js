@@ -4,7 +4,9 @@ d3.select(".panel-title").text(Panel_title);
 console.log(Panel_title);
 
 function getJsonData(data) {
-  console.log(data)
+  // console.log(Object.values(data.Postcode))
+
+  // console.log(subjects)
   return data;
 }
 
@@ -28,16 +30,26 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(map);
 
 // Getting Geojson data
-link_GeoJson = "./static/Data/Neighbourhoods.geojson" 
+var link_GeoJson = "./static/Data/Neighbourhoods.geojson" 
+
 
 function chooseColor(neighborhood){
   name = neighborhood.properties.AREA_NAME;
-  
-  return "yellow"
+  New_name = name.split(" (")[0]
+  x = "red"
+  allrent.then((data)=> {
+    var neighborhood_name = Object.values(data)[6];
+    var year = Object.values(data)[12];
+
+    console.log(neighborhood_name)
+  })
+  // console.log(New_name)
+  return x
+
 }
 
 d3.json(link_GeoJson).then(data => {
-  GeoJsonData = data;
+  var GeoJsonData = data;
   // Creating a geoJSON layer with the retrieved data
   L.geoJson(data, {
     // Style each feature (in this case a neighborhood)
@@ -45,6 +57,7 @@ d3.json(link_GeoJson).then(data => {
       return {
         color: "white",
         // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
+
         fillColor: chooseColor(neighborhood),
         fillOpacity: 0.5,
         weight: 1.5
