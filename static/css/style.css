@@ -4,10 +4,21 @@ html {
   height: 100%;
   padding: 5%;
   z-index: 1;
-/* }
-.fish {
-    position:absolute;
-    top: 300px;
-    left: 25px;
-    z-index: 2;
-  } */
+}
+
+  
+.legend {
+  line-height: 18px;
+  color: black;
+  background-color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+}
+  
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 1;
+}
