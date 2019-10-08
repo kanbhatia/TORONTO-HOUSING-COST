@@ -26,7 +26,7 @@ function getJsonData(data) {
   data.Year = Object.entries(data.Year).map(([key, value]) => (value));
   data.Neighbourhood = Object.entries(data.Neighbourhood).map(([key, value]) => (value));
 
-  data.Rent = Object.entries(data.Rent).map(([key, value]) => {
+  data.Total = Object.entries(data.Total).map(([key, value]) => {
     if (value === "**") {
       return data.Whole_Toronto_AV[key];
     }
@@ -36,12 +36,12 @@ function getJsonData(data) {
   });
 
   data.Whole_Toronto_AV = Object.entries(data.Whole_Toronto_AV).map(([key, value]) => (value));
-  map_data = [data.Year, data.Neighbourhood, data.Rent, data.Whole_Toronto_AV]
+  map_data = [data.Year, data.Neighbourhood, data.Total, data.Whole_Toronto_AV]
 
   color_factor = [];
 
   // turning "1,000 into 1000" and getting a ratio between total and toronto avg
-  for (var i = 0; i < (data.Rent).length; i++) {
+  for (var i = 0; i < (data.Total).length; i++) {
     color_factor.push((((map_data[2][i])) / ((map_data[3][i]))) * 100)
   }
 
@@ -53,11 +53,11 @@ function getJsonData(data) {
   });
   function chooseColor(name, data) {
     var New_name = name.split(" (")[0]
-
+    
     for (var i = 0; i < data.length; i++) {
-      if ((data[i][0])) {
-        if (New_name.split(" ").includes((data[i][1]).split(" ")[0]) || New_name.split(" ").includes((data[i][1]).split("-")[0]) || New_name.split(" ").includes((data[i][1]).split(" ")[1] || New_name.split(" ").includes((data[i][1]).split("-")[1]))) {
-          if ((data[i][4]) < 80) {
+      if (New_name.split(" ").includes((data[i][1]).split(" ")[0]) || New_name.split(" ").includes((data[i][1]).split("-")[0]) || New_name.split(" ").includes((data[i][1]).split(" ")[1] || New_name.split(" ").includes((data[i][1]).split("-")[1]))) {
+        console.log(`${(data[i][4])} ${data[i][1]}`)
+        if ((data[i][4]) < 80) {
             return "#00CC66";
             break;
           }
@@ -81,10 +81,10 @@ function getJsonData(data) {
             return "#ff0000";
             break;
           }
-
+          
         }
         else if (New_name.split("-").includes((data[i][1]).split(" ")[0]) || New_name.split("-").includes((data[i][1]).split("-")[0]) || New_name.split("-").includes((data[i][1]).split(" ")[1] || New_name.split("-").includes((data[i][1]).split("-")[1]))) {
-
+          
           if ((data[i][4]) < 80) {
             return "#00CC66";
             break;
@@ -109,9 +109,10 @@ function getJsonData(data) {
             return "#ff0000";
             break;
           }
-
+          
         }
         else if (New_name.split("/").includes((data[i][1]).split(" ")[0]) || New_name.split("/").includes((data[i][1]).split("-")[0]) || New_name.split("/").includes((data[i][1]).split(" ")[1] || New_name.split("/").includes((data[i][1]).split("-")[1]))) {
+          
           if ((data[i][4]) < 80) {
             return "#00CC66";
             break;
@@ -138,7 +139,7 @@ function getJsonData(data) {
           }
 
         }
-      }
+      
     }
 
   }
@@ -225,6 +226,8 @@ legend.addTo(map);
 
 
 // links
-var appstat = d3.json("http://localhost:5000/appstat").then(getJsonData);
+// var appstat = d3.json("http://localhost:5000/appstat").then(getJsonData);
 // var rentavg = d3.json("http://localhost:5000/rentavg").then(getJsonData);
 // var allrent = d3.json("http://localhost:5000/allrent").then(getJsonData);
+var rentneigh = d3.json("http://localhost:5000/rentneigh").then(getJsonData);
+
