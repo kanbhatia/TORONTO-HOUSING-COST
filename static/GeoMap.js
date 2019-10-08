@@ -185,7 +185,7 @@ function getJsonData(data) {
               }
 
             });
-            layer.bindPopup("<h1>" + feature.properties.AREA_NAME.split(" (")[0] + "</h1> <hr> <h2> Average Cost: " + + "</h2>");
+            layer.bindPopup("<p>" + feature.properties.AREA_NAME.split(" (")[0] + "</p> <hr> <h2> Average Cost: " + + "</h2>");
 
           }
         }).addTo(map);
