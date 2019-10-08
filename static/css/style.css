@@ -1,24 +1,109 @@
+h1 {
+    font-size: 50px !important;
+    margin-bottom: 60px;
+    margin-top: 60px;
+
+}
+
+.title {
+    color: #6e7f80 !important;
+    font-family: "Avenir Next" !important;
+  }
+
+body {
+    background:#A8D0E6;
+    background-image: url("toronto_pic.jpg");
+background-size: 100%;
+height: 200px;
+  }
+
+  .header {
+    /* border-color: #F76C6C; */
+    outline-style: solid;
+    outline-color:   #e5e6eb;
+}
+
+.panel > .panel-title {
+    
+    font-size: 50px !important;
+}
+h3.panel-title {
+    font-size: 30px !important;
+  
+}
+
+.collapsible {
+    background-color: #6e7f80;
+    color:  #e5e6eb;
+    text-transform: uppercase;
+    font-family: "Avenir Next" !important;
+    font-size: 30px !important;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    
+  }
+  
+  .active, .collapsible:hover {
+    background-color:whitesmoke;
+    color: #6e7f80;
+    outline-color: #6e7f80;
+  }
+  .active, .header:hover {
+ 
+    outline-color: #6e7f80;
+  }
+  
+  .thecontent {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    
+  }
+
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: rgba(43, 40, 40, 0.658);
+    color:#c5cbcc;
+    
+  }
+
+  p {
+    font-family: "Avenir Next" !important;
+    font-size: 30px !important;
+  }
+
 #map,
 body,
 html {
-  height: 100%;
-  padding: 5%;
-  z-index: 1;
+ height: 100%;
+ padding: 5%;
+ z-index: 1;
+}
+#map{
+  height: 500px;
+
+
 }
 
-  
+
 .legend {
-  line-height: 18px;
-  color: black;
-  background-color: aliceblue;
-  padding: 10px;
-  border-radius: 10px;
+ line-height: 18px;
+ color: black;
+ background-color: aliceblue;
+ padding: 10px;
+ border-radius: 10px;
 }
-  
 .legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin-right: 8px;
-  opacity: 1;
+ width: 18px;
+ height: 18px;
+ float: left;
+ margin-right: 8px;
+ opacity: 1;
 }
