@@ -25,6 +25,7 @@ console.log(Panel_title);
 function getJsonData(data) {
   data.Year = Object.entries(data.Year).map(([key, value]) => (value));
   data.Neighbourhood = Object.entries(data.Neighbourhood).map(([key, value]) => (value));
+
   data.Total = Object.entries(data.Total).map(([key, value]) => {
     if (value === "**") {
       return "1";
@@ -33,16 +34,36 @@ function getJsonData(data) {
       return (value)
     }
   });
-  data.Whole_Toronto_AV = Object.entries(data.Whole_Toronto_AV).map(([key, value]) => (value));
 
+  data.Whole_Toronto_AV = Object.entries(data.Whole_Toronto_AV).map(([key, value]) => (value));
   map_data = [data.Year, data.Neighbourhood, data.Total, data.Whole_Toronto_AV]
 
-  function chooseColor(name,data) {
-    New_name = name.split(" (")[0]
-  
-    // allrent.then((data) => {
-      console.log(data[0])
-    // });
+  color_factor = [];
+
+  // turning "1,000 into 1000" and getting a ratio between total and toronto avg
+  for (var i = 0; i < (data.Total).length; i++) {
+    color_factor.push((((map_data[2][i]).split(",").join("")) / ((map_data[3][i]).split(",").join(""))) * 100)
+  }
+
+  map_data.push(color_factor)
+  var sum = []
+
+  Object.entries(map_data[0]).forEach(([key, value]) => {
+    sum.push([map_data[0][key], map_data[1][key], map_data[2][key], map_data[3][key], map_data[4][key]])
+  });
+
+  function chooseColor(name, data) {
+    var New_name = name.split(" (")[0]
+
+    for (var i = 0; i< data.length; i++){
+      if ((data[i][1]) === New_name){
+        console.log(data[i]);
+        break;
+      }
+    }
+    
+
+
     switch (New_name) {
       case "New Toronto":
         return "yellow";
@@ -68,7 +89,7 @@ function getJsonData(data) {
         return {
           color: "white",
           // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
-          fillColor: chooseColor(neighborhood.properties.AREA_NAME,map_data),
+          fillColor: chooseColor(neighborhood.properties.AREA_NAME, sum),
           fillOpacity: 0.5,
           weight: 1.5
         };

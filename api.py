@@ -17,14 +17,10 @@ allrent = pd.read_csv(allrent_loc)
 rds_connection_string = "postgres:postgres@localhost:5432/Housing_cost"
 engine = create_engine(f'postgresql://{rds_connection_string}')
 
-appstat.to_sql(name='App_Stat', con=engine, if_exists='append', index=False)
-rentavg.to_sql(name='Rent_Avg', con=engine, if_exists='append', index=False)
-allrent.to_sql(name='All_Rent', con=engine, if_exists='append', index=False)
+appstat.to_sql(name='App_Stat', con=engine, if_exists='replace', index=False)
+rentavg.to_sql(name='Rent_Avg', con=engine, if_exists='replace', index=False)
+allrent.to_sql(name='All_Rent', con=engine, if_exists='replace', index=False)
 
-# Drop tables if they already exist
-# pd.read_sql_query('drop table "App_Stat"', con=engine)
-# pd.read_sql_query('drop table "Rent_Avg"', con=engine)
-# pd.read_sql_query('drop table "All_Rent"', con=engine)
 
 # Reading data from PostGres
 appstat = pd.read_sql_query('select * from "App_Stat"', con=engine).to_dict()
