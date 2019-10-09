@@ -56,7 +56,7 @@ function getJsonData(data) {
     
     for (var i = 0; i < data.length; i++) {
       if (New_name.split(" ").includes((data[i][1]).split(" ")[0]) || New_name.split(" ").includes((data[i][1]).split("-")[0]) || New_name.split(" ").includes((data[i][1]).split(" ")[1] || New_name.split(" ").includes((data[i][1]).split("-")[1]))) {
-        console.log(`${(data[i][4])} ${data[i][1]}`)
+        // console.log(`${(data[i][4])} ${data[i][1]}`)
         if ((data[i][4]) < 80) {
             return "#00CC66";
             break;
@@ -181,7 +181,104 @@ function getJsonData(data) {
               // When a feature (neighborhood) is clicked, it is enlarged to fit the screen
               click: function (event) {
                 map.fitBounds(event.target.getBounds());
+                stock = (event.target.feature.properties.AREA_NAME.split(" (")[0])
                 map.setView([43.723734, -79.381762], 11)
+                buildPlot(stock)
+                function buildPlot(stock) {
+                  var id = stock;
+                  
+                
+                  d3.json("http://localhost:5000/rentneigh").then(function(data) {
+                    // Grab values from the response json object to build the plots
+                    // Print the names of the columns
+                  console.log("hello")
+                    var Neighbour = Object.values(data["Neighbourhood"])
+                
+                    var bed1 = Object.values(data["1 Bedroom"])
+                    var bed2 = Object.values(data["2 Bedroom"])
+                    var bed3 = Object.values(data["3 Bedroom +"])
+                    var bach = Object.values(data["Bachelor"])
+                    var avgbed = Object.values(data["Total"])
+                    var year = Object.values(data["Year"])
+                    var bed1Plot = [] 
+                    var bed2Plot = [] 
+                    var bed3Plot = [] 
+                    var bachPlot = [] 
+                    var avgbedPlot = [] 
+                    var yearPlot = [] 
+                  
+                    var tempyear
+                
+                    var apartments = {}
+                
+                    for (var i = 0; i < Neighbour.length; i++) {
+                      if (Neighbour[i] == id){
+                        tempyear = yearPlot.includes(year[i])
+                        if( tempyear != true){
+                          bed1Plot.push(bed1[i]); 
+                          bed2Plot.push(bed2[i]);
+                          bed3Plot.push(bed3[i]); 
+                          bachPlot.push(bach[i]);
+                          avgbedPlot.push(avgbed[i]);
+                          yearPlot.push(year[i]);
+                        }
+                        }
+                      }
+                    
+                    let zip = (a1, a2) => a1.map((x, i) => [x, a2[i]]); 
+                    var chartPlot =zip(yearPlot, avgbedPlot); // ["a", 1], ["b", 2], ["c", 3]
+                
+                    //var chartPlot = new Array(yearPlot, avgbedPlot)
+                    //console.log(chartPlot);
+                
+                
+                    chartPlot.sort(function(a, b){return a[0] - b[0]});
+                
+                    var bed1Plot2 = [] 
+                    var bed2Plot2 = [] 
+                    var bed3Plot2 = [] 
+                    var bachPlot2 = [] 
+                    var avgbedPlot2 = [] 
+                    var yearPlot2 = [] 
+                
+                    console.log(chartPlot)
+                
+                    for (var k = 0; k < chartPlot.length; k++)  {
+                      avgbedPlot2.push(chartPlot[k][1]);
+                      yearPlot2.push(chartPlot[k][0])
+                    }  
+                    console.log(avgbedPlot2)
+                
+                    var trace1 = {
+                      type: "line",
+                      x: yearPlot2,
+                      y: avgbedPlot2,
+                      line: {
+                        color: "#17BECF"
+                      }
+                    };
+                
+                    var plotData = [trace1];
+                
+                    var layout = {
+                      title: `closing prices`,
+                      xaxis: {
+                        autorange: true,
+                        type: "time",
+                          time: {unit: 'year'}
+                      },
+                      yaxis: {
+                        autorange: true,
+                        type: "linear"
+                      }
+                    };
+                
+                    Plotly.newPlot("plot", plotData, layout);
+
+                  
+                  });
+                
+                }
               }
 
             });
@@ -230,4 +327,3 @@ legend.addTo(map);
 // var rentavg = d3.json("http://localhost:5000/rentavg").then(getJsonData);
 // var allrent = d3.json("http://localhost:5000/allrent").then(getJsonData);
 var rentneigh = d3.json("http://localhost:5000/rentneigh").then(getJsonData);
-
