@@ -7,7 +7,7 @@ h1 {
 
 .title {
     color: #6e7f80 !important;
-    font-family: "Avenir Next" !important;
+    /* font-family: "Avenir Next" !important; */
   }
 
 body {
@@ -36,7 +36,7 @@ h3.panel-title {
     background-color: #6e7f80;
     color:  #e5e6eb;
     text-transform: uppercase;
-    font-family: "Avenir Next" !important;
+    /* font-family: "Avenir Next" !important; */
     font-size: 30px !important;
     cursor: pointer;
     padding: 18px;
@@ -74,7 +74,7 @@ h3.panel-title {
   }
 
   p {
-    font-family: "Avenir Next" !important;
+    /* font-family: "Avenir Next" !important; */
     font-size: 30px !important;
   }
 
@@ -103,9 +103,3 @@ h3.panel-title {
  margin-right: 8px;
  opacity: 1;
 }
-
-
-@font-face {
-  font-family: 'Avenir Next';
-  src: url("http://localhost:5000.com/fonts/Avenir_Next.otf"); /* File to be stored at your site */
-  }
