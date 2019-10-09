@@ -107,5 +107,5 @@ h3.panel-title {
 
 @font-face {
   font-family: 'Avenir Next';
-  src: url("http://www.yoursite.com/fonts/Avenir_Next.otf"); /* File to be stored at your site */
+  src: url("http://localhost:5000.com/fonts/Avenir_Next.otf"); /* File to be stored at your site */
   }
