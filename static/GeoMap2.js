@@ -1,6 +1,6 @@
 
 // Creating map object
-var map = L.map("map", {
+var map = L.map("map2", {
   center: [43.723734, -79.381762],
   zoom: 11
 });
@@ -18,7 +18,7 @@ var link_GeoJson = "./static/Data/Neighbourhoods.geojson"
 
 
 // Change the panel title
-Panel_title = "Toronto Map with Rental Prices"
+Panel_title = "TORONTO MAP WITH RENTAL PRICES"
 d3.select(".panel-title").text(Panel_title);
 console.log(Panel_title);
 

@@ -64,6 +64,13 @@ h3.panel-title {
     
   }
 
+  .thecontent2 {
+    padding: 0 18px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    
+  }
+
   .content {
     padding: 0 18px;
     display: none;
@@ -81,12 +88,24 @@ h3.panel-title {
 #map{
  height: 500%;
  padding: 0%;
+ /* position: relative; */
  z-index: 1;
 }
 
 #map{
-  height: 1000px;
+  height: 400px;
 }
+
+#map2{
+  height: 500%;
+  padding: 0%;
+  /* position: relative; */
+  z-index: 1;
+ }
+ 
+ #map2{
+   height: 400px;
+ }
 
 
 .legend {
@@ -102,4 +121,47 @@ h3.panel-title {
  float: left;
  margin-right: 8px;
  opacity: 1;
+}
+
+#plot {
+  position: absolute;
+  z-index: 1;
+  width: 400px;
+  height: 400px;
+  bottom: -35px;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  /* display: none; */
+  padding: 6px 12px;
+  /* border: 1px solid #ccc; */
+  border-top: none;
 }

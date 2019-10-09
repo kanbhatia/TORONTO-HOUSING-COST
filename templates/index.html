@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Avenir+Next">
-    <style>
-      body {
-        font-family: 'Avenir Next';
-      }
-    </style>
+  
 <head>
         <div class="background">
     <meta charset="UTF-8">
@@ -35,17 +29,36 @@
             </div>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-md-">
+              
+                        <div class="header">
+                                 <button type="button" class="collapsible">
+                                   <h3 class="panel-title">TORONTO MAP WITH RENTAL PRICES</h3></button>
+                            <div class="thecontent2">
+                                    <div id="map2">
+                               
+                                </div>
+                                <div id="plot">
+                               
+                                  </div>
+                        </div>
+                    </div>
+                    <div id="main-display" class="panel-body"></div>
+                </div>
+            </div>
         <div class="row">
             <div class="col-md-">
                         <div class="header">
-                                 <button type="button" class="collapsible"><h3 class="panel-title">TORONTO MAP</h3></button>
+                                 <button type="button" class="collapsible"><h3 class="panel-title">TORONTO MAP WITH APPLICATION DATA</h3></button>
                             <div class="thecontent">
-                                
                                     <div id="map">
-                                    </div>
-                                    <div id="plot"> </div>
+                                      </div>
+                                      <div id="plot">
                                 
-
+                               
+                                  </div>
                         </div>
                     </div>
                     <div id="main-display" class="panel-body"></div>
@@ -2901,10 +2914,12 @@
                     </div>
     </div>
 
+    <script src="js/logic.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="./static/GeoMap.js"></script>
-
+    <script src="./static/GeoMap2.js"></script>
 
     <script>
             var coll = document.getElementsByClassName("collapsible");
