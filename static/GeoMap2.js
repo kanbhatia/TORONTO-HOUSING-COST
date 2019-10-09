@@ -18,9 +18,9 @@ var link_GeoJson = "./static/Data/Neighbourhoods.geojson"
 
 
 // Change the panel title
-Panel_title = "TORONTO MAP WITH RENTAL PRICES"
-d3.select(".panel-title").text(Panel_title);
-console.log(Panel_title);
+// Panel_title = "TORONTO MAP WITH RENTAL PRICES"
+// d3.select(".panel-title").text(Panel_title);
+// console.log(Panel_title);
 
 function getJsonData(data) {
   data.Year = Object.entries(data.Year).map(([key, value]) => (value));
@@ -149,7 +149,7 @@ function getJsonData(data) {
     // Creating a geoJSON layer with the retrieved data
 
     // for (var i = 2010; i < 2019; i++) {
-      var GeoJson_layer = L.geoJson(data, {
+      var GeoJson_layer2 = L.geoJson(data, {
         // Style each feature (in this case a neighborhood)
         style: function (neighborhood) {
             return {
@@ -273,7 +273,7 @@ function getJsonData(data) {
                       }
                     };
                 
-                    Plotly.newPlot("plot", plotData, layout);
+                    Plotly.newPlot("plot2", plotData, layout);
 
                   
                   });
