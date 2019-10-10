@@ -127,11 +127,8 @@ h3.panel-title {
 }
 
 #plot {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  width: 400px;
-  height: 400px;
-  bottom: 150px;
 }
 
 .tab {

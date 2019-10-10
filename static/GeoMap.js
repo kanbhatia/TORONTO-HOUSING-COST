@@ -17,11 +17,6 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 var link_GeoJson = "./static/Data/Neighbourhoods.geojson"
 
 
-// Change the panel title
-Panel_title = "Toronto Map with Rental Prices"
-d3.select(".panel-title").text(Panel_title);
-console.log(Panel_title);
-
 function getJsonData(data) {
   data.Year = Object.entries(data.Year).map(([key, value]) => (value));
   data.Neighbourhood = Object.entries(data.Neighbourhood).map(([key, value]) => (value));
@@ -184,6 +179,7 @@ function getJsonData(data) {
                 stock = (event.target.feature.properties.AREA_NAME.split(" (")[0])
                 map.setView([43.723734, -79.381762], 11)
                 buildPlot(stock)
+                
                 function buildPlot(stock) {
                   var id = stock;
                   
@@ -191,7 +187,7 @@ function getJsonData(data) {
                   d3.json("http://localhost:5000/rentneigh").then(function(data) {
                     // Grab values from the response json object to build the plots
                     // Print the names of the columns
-                  console.log("hello")
+                
                     var Neighbour = Object.values(data["Neighbourhood"])
                 
                     var bed1 = Object.values(data["1 Bedroom"])
@@ -212,7 +208,7 @@ function getJsonData(data) {
                     var apartments = {}
                 
                     for (var i = 0; i < Neighbour.length; i++) {
-                      if (Neighbour[i] == id){
+                      if (id.includes(Neighbour[i].split("/")[0]||id.includes(Neighbour[i].split("/")[1]))){
                         tempyear = yearPlot.includes(year[i])
                         if( tempyear != true){
                           bed1Plot.push(bed1[i]); 
@@ -225,14 +221,8 @@ function getJsonData(data) {
                         }
                       }
                     
-                    let zip = (a1, a2) => a1.map((x, i) => [x, a2[i]]); 
-                    var chartPlot =zip(yearPlot, avgbedPlot); // ["a", 1], ["b", 2], ["c", 3]
+                    // console.log(bed1Plot)
                 
-                    //var chartPlot = new Array(yearPlot, avgbedPlot)
-                    //console.log(chartPlot);
-                
-                
-                    chartPlot.sort(function(a, b){return a[0] - b[0]});
                 
                     var bed1Plot2 = [] 
                     var bed2Plot2 = [] 
@@ -241,41 +231,139 @@ function getJsonData(data) {
                     var avgbedPlot2 = [] 
                     var yearPlot2 = [] 
                 
-                    console.log(chartPlot)
+                    let zip = (a1, a2) => a1.map((x, i) => [x, a2[i]]); 
+                    var chartPlot =zip(yearPlot, avgbedPlot); // ["a", 1], ["b", 2], ["c", 3]
+                
+                    //var chartPlot = new Array(yearPlot, avgbedPlot)
+                    //console.log(chartPlot);
+                    chartPlot.sort(function(a, b){return a[0] - b[0]});
+                
+                
+                    // console.log(chartPlot)
                 
                     for (var k = 0; k < chartPlot.length; k++)  {
                       avgbedPlot2.push(chartPlot[k][1]);
                       yearPlot2.push(chartPlot[k][0])
                     }  
-                    console.log(avgbedPlot2)
+                    // console.log(avgbedPlot2)
                 
-                    var trace1 = {
-                      type: "line",
-                      x: yearPlot2,
-                      y: avgbedPlot2,
-                      line: {
-                        color: "#17BECF"
+                    let zip2 = (a1, a2) => a1.map((x, i) => [x, a2[i]]); 
+                    var chartPlot2 =zip2(yearPlot, bed1Plot); // ["a", 1], ["b", 2], ["c", 3]
+                
+                    //var chartPlot = new Array(yearPlot, avgbedPlot)
+                    //console.log(chartPlot);
+                    chartPlot2.sort(function(a, b){return a[0] - b[0]});
+                
+                
+                    // console.log(chartPlot2)
+                
+                    for (var j = 0; j < chartPlot2.length; j++)  {
+                      bed1Plot2.push(chartPlot2[j][1]);
+                    }  
+                
+                    let zip3 = (a1, a2) => a1.map((x, i) => [x, a2[i]]); 
+                    var chartPlot3 =zip3(yearPlot, bed2Plot); // ["a", 1], ["b", 2], ["c", 3]
+                
+                    //var chartPlot = new Array(yearPlot, avgbedPlot)
+                    //console.log(chartPlot);
+                    chartPlot3.sort(function(a, b){return a[0] - b[0]});
+                
+                
+                    for (var j = 0; j < chartPlot3.length; j++)  {
+                      bed2Plot2.push(chartPlot3[j][1]);
+                    } 
+                    
+                    let zip4 = (a1, a2) => a1.map((x, i) => [x, a2[i]]); 
+                    var chartPlot4 =zip4(yearPlot, bed3Plot); // ["a", 1], ["b", 2], ["c", 3]
+                
+                    //var chartPlot = new Array(yearPlot, avgbedPlot)
+                    //console.log(chartPlot);
+                    chartPlot4.sort(function(a, b){return a[0] - b[0]});
+                
+                
+                    for (var j = 0; j < chartPlot4.length; j++)  {
+                      bed3Plot2.push(chartPlot4[j][1]);
+                    } 
+                    
+                    // console.log(chartPlot4)
+                
+                    let zip5 = (a1, a2) => a1.map((x, i) => [x, a2[i]]); 
+                    var chartPlot5 =zip5(yearPlot, bachPlot); // ["a", 1], ["b", 2], ["c", 3]
+                
+                    //var chartPlot = new Array(yearPlot, avgbedPlot)
+                    //console.log(chartPlot);
+                    chartPlot5.sort(function(a, b){return a[0] - b[0]});
+                
+                
+                    for (var j = 0; j < chartPlot5.length; j++)  {
+                      bachPlot2.push(chartPlot5[j][1]);
+                    } 
+                    
+                    // console.log(chartPlot4)
+                
+                
+                    function init() {
+                      data2 = [{
+                        x: yearPlot2,
+                        y: avgbedPlot2 }];
+                    
+                      Plotly.newPlot("plot", data2);
+                    }
+                
+                    d3.selectAll("#selDataset").on("change", updatePlotly);
+                
+                    // This function is called when a dropdown menu item is selected
+                    function updatePlotly() {
+                      // Use D3 to select the dropdown menu
+                      var dropdownMenu = d3.select("#selDataset");
+                      // Assign the value of the dropdown menu option to a variable
+                      var dataset = dropdownMenu.property("value");
+                
+                      // Initialize x and y arrays
+                      var x = [];
+                      var y = [];
+                
+                      if (dataset === 'dataset1')  {
+                        x = yearPlot2;
+                        y = avgbedPlot2;
+                
                       }
-                    };
-                
-                    var plotData = [trace1];
-                
-                    var layout = {
-                      title: `closing prices`,
-                      xaxis: {
-                        autorange: true,
-                        type: "time",
-                          time: {unit: 'year'}
-                      },
-                      yaxis: {
-                        autorange: true,
-                        type: "linear"
+                      if (dataset === 'dataset2') {
+                        x = yearPlot2;
+                        y = bachPlot2;
                       }
-                    };
+                    
+                      if (dataset === 'dataset3') {
+                        x = yearPlot2;
+                        y = bed1Plot2;
+                      }
                 
-                    Plotly.newPlot("plot", plotData, layout);
-
+                      if (dataset === 'dataset4') {
+                        x = yearPlot2;
+                        y = bed2Plot2;
+                      }
+                
+                      if (dataset === 'dataset5') {
+                        x = yearPlot2;
+                        y = bed3Plot2;
+                      }
+                
+                      // Note the extra brackets around 'x' and 'y'
+                      Plotly.restyle("plot", "x", [x]);
+                      Plotly.restyle("plot", "y", [y]);
+                    }
+                
+                    init();
+                
+                
+                
+                
+                        
+                
                   
+                
+                  
+                
                   });
                 
                 }
@@ -286,12 +374,6 @@ function getJsonData(data) {
 
           }
         }).addTo(map);
-      //   setTimeout(function () {
-      //   map.removeLayer(GeoJson_layer)
-      //   console.log(i)
-      // }, 10000);
-    // }
-
   });
 
 }
