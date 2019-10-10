@@ -1,7 +1,8 @@
 h1 {
     font-size: 50px !important;
-    margin-bottom: 60px;
-    margin-top: 60px;
+    /* margin-bottom: 60px; */
+    margin-top: 20px;
+    margin-bottom: 20px;
 
 }
 
@@ -19,6 +20,8 @@ height: 200px;
 
   .header {
     /* border-color: #F76C6C; */
+    margin-top: 10px;
+    margin-bottom: 10px;
     outline-style: solid;
     outline-color:   #e5e6eb;
 }
@@ -39,7 +42,7 @@ h3.panel-title {
     /* font-family: "Avenir Next" !important; */
     font-size: 30px !important;
     cursor: pointer;
-    padding: 18px;
+    padding: 15px;
     width: 100%;
     border: none;
     text-align: left;
@@ -58,7 +61,7 @@ h3.panel-title {
   }
   
   .thecontent {
-    padding: 0 18px;
+    padding: 10px;
     overflow: hidden;
     background-color: #f1f1f1;
     
@@ -128,7 +131,7 @@ h3.panel-title {
   z-index: 1;
   width: 400px;
   height: 400px;
-  bottom: -35px;
+  bottom: 150px;
 }
 
 .tab {
