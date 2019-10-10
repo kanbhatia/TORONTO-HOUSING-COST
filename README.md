@@ -1,6 +1,6 @@
 Team Project 2 
 
-A VISUALIZATION OF CONDO BUILDING PERMITS AND RENTAL PRICES IN THE CITY OF TORONTO FROM 2010 TO 2018
+A VISUALIZATION OF RENTAL PRICES IN THE CITY OF TORONTO FROM 2010 TO 2018
   
   An interactive dashboard showing a geographical map of neighbourhoods in the City of Toronto and Infographic bar charts presenting historical rental prices.
   
