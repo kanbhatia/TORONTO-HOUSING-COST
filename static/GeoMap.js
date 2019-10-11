@@ -14,7 +14,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(map);
 
 // Getting Geojson data
-var link_GeoJson = "./static/Data/Neighbourhoods.geojson"
+var link_GeoJson = "Data/Neighbourhoods.geojson"
 
 
 function getJsonData(data) {
@@ -221,7 +221,7 @@ function getJsonData(data) {
               var id = stock;
 
 
-              d3.json("http://localhost:5000/rentneigh").then(function (data) {
+              d3.json("JSON Files/RentNeigh.json").then(function (data) {
                 // Grab values from the response json object to build the plots
                 // Print the names of the columns
 
@@ -434,7 +434,4 @@ legend.addTo(map);
 
 
 // links
-// var appstat = d3.json("http://localhost:5000/appstat").then(getJsonData);
-// var rentavg = d3.json("http://localhost:5000/rentavg").then(getJsonData);
-// var allrent = d3.json("http://localhost:5000/allrent").then(getJsonData);
-var rentneigh = d3.json("http://localhost:5000/rentneigh").then(getJsonData);
+var rentneigh = d3.json("JSON Files/RentNeigh.json").then(getJsonData);
